@@ -15,7 +15,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 
 // React hooks for state and lifecycle
-import { useEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 
 // Utility function for conditional class merging
 import { cn } from '@/lib/utils';
@@ -48,10 +48,10 @@ export function ThemeToggle() {
   const { setTheme, theme, resolvedTheme } = useTheme();
 
   // Run once on initial mount — sets mounted = true
-  useEffect(() => {
+  useLayoutEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
-
   // Prevent rendering until mounted, avoiding SSR hydration issues
   if (!mounted) return null;
 
