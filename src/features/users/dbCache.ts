@@ -17,6 +17,6 @@ export function getUserIdTag(id: string) {
 // and the specific user ID tag.
 // Ensures both "all users" data and "single user" data are refreshed.
 export function revalidateUserCache(id: string) {
-  revalidateTag(getUserGlobalTag()); // Revalidate global users cache
-  revalidateTag(getUserIdTag(id)); // Revalidate specific user cache
+  revalidateTag(getUserGlobalTag(), 'default'); // Revalidate global users cache
+  revalidateTag(getUserIdTag(id), 'default'); // Revalidate specific user cache
 }
