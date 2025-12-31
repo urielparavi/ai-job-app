@@ -1,0 +1,14 @@
+services:
+  db: # Define a service named "db" (our PostgreSQL database)
+    image: postgres:17.0 # Use the official PostgreSQL Docker image, version 17.0
+    hostname: ${DB_HOST} # Set the hostname of the container (from environment variable)
+    ports:
+      - '5432:${DB_PORT}' # Map container port 5432 (Postgres default) to host port defined in DB_PORT
+    environment: # Environment variables for PostgreSQL configuration
+      - POSTGRES_PASSWORD=${DB_PASSWORD} # Password for the database user
+      - POSTGRES_USER=${DB_USER} # Username for the database
+      - POSTGRES_DB=${DB_NAME} # Name of the database to create on first run
+    volumes:
+      - pgdata:/var/lib/postgresql/data # Use a named volume "pgdata" to persist database files
+volumes:
+  pgdata: # Define the named volume "pgdata" which will store PostgreSQL data outside the container
